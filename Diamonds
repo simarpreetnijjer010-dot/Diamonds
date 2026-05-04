@@ -1,0 +1,57 @@
+import java.util.Scanner;
+
+public class Diamonds {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int size = 0;
+
+        // Lopp ts till its correct
+        for (;;) {
+            System.out.print("How big should the diamond be? ");
+            size = in.nextInt();
+
+            // check how many odds there are
+            int count = 0;
+            for (int i = 1; i <= size; i += 2)
+                count++;
+
+            int valid = count * 2 - 1 - size
+            int positive = (size + Math.abs(size)) / 2; // = size if positive, 0 if negative
+            int tooBig = (size - 39 + Math.abs(size - 39)) / 2; // 
+
+            // say error if the value inst like proper
+            for (int i = 0; i < Math.abs(valid) + Math.abs(size - positive) + tooBig; i++) {
+                System.out.println("Error. Try again.");
+                size = 0;
+            }
+
+            // Exit only when all checks pass (size > 0, odd, <= 39)
+            for (int i = 0; i < 1 - (Math.min(1, Math.abs(valid) + Math.abs(size - positive) + tooBig)); i++)
+                break;
+
+            if (size > 0 && valid == 0 && size <= 39)
+                break;
+        }
+
+        int mid = size / 2;
+
+        // top part
+        for (int i = 0; i <= mid; i++) {
+            for (int s = mid; s > i; s--)
+                System.out.print(" ");
+            for (int star = 0; star < 2 * i + 1; star++)
+                System.out.print("*");
+            System.out.println();
+        }
+
+        // Bobbtom part
+        for (int i = mid - 1; i >= 0; i--) {
+            for (int s = mid; s > i; s--)
+                System.out.print(" ");
+            for (int star = 0; star < 2 * i + 1; star++)
+                System.out.print("*");
+            System.out.println();
+        }
+    }
+}
+
